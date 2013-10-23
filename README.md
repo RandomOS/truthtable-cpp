@@ -1,7 +1,7 @@
-# Usage
+## Usage
 ./truth_table
 
-# Description
+## Description
 Truth table calculator written in Cpp and STL
 
 * `!`: not
@@ -11,5 +11,5 @@ Truth table calculator written in Cpp and STL
 * `#`: equivalence
 * `A-Z`: element
 
-# Compile
+## Compile
     g++ truth_table.c -lm -o truth_table

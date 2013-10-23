@@ -1,6 +1,6 @@
 /*******************
 ** 2012-02-25
-** ÀëÉ¢ÊıÑ§ÕæÖµ±í
+** ç¦»æ•£æ•°å­¦çœŸå€¼è¡¨
 */
 #include <iostream>
 #include <string>
@@ -18,7 +18,7 @@ using namespace std;
 
 /*
 ** isoperator
-** ÅĞ¶ÏÊÇ·ñÊÇºÏ·¨µÄ²Ù×÷·û
+** åˆ¤æ–­æ˜¯å¦æ˜¯åˆæ³•çš„æ“ä½œç¬¦
 */
 int isoperator(char c)
 {
@@ -35,7 +35,7 @@ int isoperator(char c)
 }
 
 /*
-** ÅĞ¶ÏÊÇ·ñÊÇË«Ä¿²Ù×÷·û
+** åˆ¤æ–­æ˜¯å¦æ˜¯åŒç›®æ“ä½œç¬¦
 */
 int isbinaryoperator(char c)
 {
@@ -43,7 +43,7 @@ int isbinaryoperator(char c)
 }
 
 /*
-** ÅĞ¶ÏÊÇ·ñÊÇ²»ºÏ·¨×Ö·û
+** åˆ¤æ–­æ˜¯å¦æ˜¯ä¸åˆæ³•å­—ç¬¦
 */
 int isinvalidchar(char c)
 {
@@ -55,7 +55,7 @@ int isinvalidchar(char c)
 }
 
 /*
-** ÅĞ¶ÏÊÇ·ñÊÇ´óĞ´×ÖÄ¸
+** åˆ¤æ–­æ˜¯å¦æ˜¯å¤§å†™å­—æ¯
 */
 int isupperalpha(char c)
 {
@@ -64,7 +64,7 @@ int isupperalpha(char c)
 
 /*
 ** priority
-** Êä³öÁª½á´ÊµÄÓÅÏÈ¼¶
+** è¾“å‡ºè”ç»“è¯çš„ä¼˜å…ˆçº§
 */
 int priority(char opr)
 {
@@ -86,49 +86,49 @@ int priority(char opr)
 }
 
 /*
-** ÅĞ¶Ï±í´ïÊ½ÊÇ·ñºÏ·¨
+** åˆ¤æ–­è¡¨è¾¾å¼æ˜¯å¦åˆæ³•
 */
 int is_valid_expression(const string& exp)
 {
-    //ÅĞ¶Ï±í´ïÊ½ÊÇ·ñÎª¿Õ
+    //åˆ¤æ–­è¡¨è¾¾å¼æ˜¯å¦ä¸ºç©º
     if (exp.empty())
     {
-        cout << "ÄãÊ²Ã´Ò²Ã»ÊäÈë£¡" << endl;
+        cout << "ä½ ä»€ä¹ˆä¹Ÿæ²¡è¾“å…¥ï¼" << endl;
         return 0;
     }
-    //ÅĞ¶Ï±í´ïÊ½ÖĞÊÇ·ñÓĞ²»ºÏ·¨µÄ×Ö·û
+    //åˆ¤æ–­è¡¨è¾¾å¼ä¸­æ˜¯å¦æœ‰ä¸åˆæ³•çš„å­—ç¬¦
     string::const_iterator pos;
     pos = find_if(exp.begin(), exp.end(), isinvalidchar);
     if (pos != exp.end())
     {
-        cout << "ÎŞĞ§µÄ×Ö·û: '" << *pos << '\'' << endl;
+        cout << "æ— æ•ˆçš„å­—ç¬¦: '" << *pos << '\'' << endl;
         return 0;
     }
-    //¿ªÍ·µÄ×Ö·ûÒªÇó
+    //å¼€å¤´çš„å­—ç¬¦è¦æ±‚
     if (!isupper(*(exp.begin())) && *(exp.begin()) != '(' && *(exp.begin()) != '!')
     {
-        cout << "¿ªÍ·×Ö·û´íÎó!" << endl;
+        cout << "å¼€å¤´å­—ç¬¦é”™è¯¯!" << endl;
         return 0;
     }
-    //½áÎ²µÄ×Ö·ûÒªÇó
+    //ç»“å°¾çš„å­—ç¬¦è¦æ±‚
     if (!isupper(*(exp.rbegin())) && *(exp.rbegin()) != ')')
     {
-        cout << "½áÎ²×Ö·û´íÎó!" << endl;
+        cout << "ç»“å°¾å­—ç¬¦é”™è¯¯!" << endl;
         return 0;
     }
-    //±í´ïÊ½ÖĞ±äÔªµÄ¸öÊıÖÁÉÙÎª1
+    //è¡¨è¾¾å¼ä¸­å˜å…ƒçš„ä¸ªæ•°è‡³å°‘ä¸º1
     if (0 == count_if(exp.begin(), exp.end(), isupperalpha))
     {
-        cout << "Ã»ÓĞ±äÔª!" << endl;
+        cout << "æ²¡æœ‰å˜å…ƒ!" << endl;
         return 0;
     }
-    //×óÓÒÀ¨ºÅÊıÒªÏàµÈ
+    //å·¦å³æ‹¬å·æ•°è¦ç›¸ç­‰
     if (count(exp.begin(), exp.end(), '(') != count(exp.begin(), exp.end(), ')'))
     {
-        cout << "À¨ºÅÊı²»µÈ!" << endl;
+        cout << "æ‹¬å·æ•°ä¸ç­‰!" << endl;
         return 0;
     }
-    //Ã¿Ò»¶ÔÆ¥ÅäµÄÀ¨ºÅ£¬ÓÒÀ¨ºÅ¶¼ÔÚ×óÀ¨ºÅºó
+    //æ¯ä¸€å¯¹åŒ¹é…çš„æ‹¬å·ï¼Œå³æ‹¬å·éƒ½åœ¨å·¦æ‹¬å·å
     vector<int> bracketpos[2];
     for (pos = exp.begin(); pos != exp.end(); ++pos)
     {
@@ -142,11 +142,11 @@ int is_valid_expression(const string& exp)
     {
         if (bracketpos[0][v] > bracketpos[1][v])
         {
-            cout << "À¨ºÅÎ»ÖÃ²»Æ¥Åä!" << endl;
+            cout << "æ‹¬å·ä½ç½®ä¸åŒ¹é…!" << endl;
             return 0;
         }
     }
-    //Ã¿¸ö×Ö·û×óÓÒÓ¦Âú×ãµÄÌõ¼ş
+    //æ¯ä¸ªå­—ç¬¦å·¦å³åº”æ»¡è¶³çš„æ¡ä»¶
     string::size_type i;
     for (i = 0; i != exp.size() - 1; ++i)
     {
@@ -154,7 +154,7 @@ int is_valid_expression(const string& exp)
         {
             if (exp[i + 1] != ')' && !isbinaryoperator(exp[i + 1]))
             {
-                cout << '\'' << exp[i] << "'ÓÒ±ßÓĞÎó!´íÎó:" << exp[i] << exp[i + 1] << endl;
+                cout << '\'' << exp[i] << "'å³è¾¹æœ‰è¯¯!é”™è¯¯:" << exp[i] << exp[i + 1] << endl;
                 return 0;
             }
         }
@@ -162,7 +162,7 @@ int is_valid_expression(const string& exp)
         {
             if (exp[i + 1] == ')' || isbinaryoperator(exp[i + 1]))
             {
-                cout << '\'' << exp[i] << "'ÓÒ±ßÓĞÎó!´íÎó:" << exp[i] << exp[i + 1] << endl;
+                cout << '\'' << exp[i] << "'å³è¾¹æœ‰è¯¯!é”™è¯¯:" << exp[i] << exp[i + 1] << endl;
                 return 0;
             }
         }
@@ -170,7 +170,7 @@ int is_valid_expression(const string& exp)
         {
             if (exp[i + 1] != ')' && !isbinaryoperator(exp[i + 1]))
             {
-                cout << '\'' << exp[i] << "'ÓÒ±ßÓĞÎó!´íÎó:" << exp[i] << exp[i + 1] << endl;
+                cout << '\'' << exp[i] << "'å³è¾¹æœ‰è¯¯!é”™è¯¯:" << exp[i] << exp[i + 1] << endl;
                 return 0;
             }
         }
@@ -178,7 +178,7 @@ int is_valid_expression(const string& exp)
         {
             if (exp[i + 1] == ')' || isbinaryoperator(exp[i + 1]))
             {
-                cout << '\'' << exp[i] << "'ÓÒ±ßÓĞÎó!´íÎó:" << exp[i] << exp[i + 1] << endl;
+                cout << '\'' << exp[i] << "'å³è¾¹æœ‰è¯¯!é”™è¯¯:" << exp[i] << exp[i + 1] << endl;
                 return 0;
             }
         }
@@ -186,7 +186,7 @@ int is_valid_expression(const string& exp)
         {
             if (exp[i + 1] == ')' || isbinaryoperator(exp[i + 1]))
             {
-                cout << '\'' << exp[i] << "'ÓÒ±ßÓĞÎó!´íÎó:" << exp[i] << exp[i + 1] << endl;
+                cout << '\'' << exp[i] << "'å³è¾¹æœ‰è¯¯!é”™è¯¯:" << exp[i] << exp[i + 1] << endl;
                 return 0;
             }
         }
@@ -195,7 +195,7 @@ int is_valid_expression(const string& exp)
 }
 
 /*
-** »ñÈ¡±í´ïÊ½ÖĞµÄ±äÔªĞÅÏ¢
+** è·å–è¡¨è¾¾å¼ä¸­çš„å˜å…ƒä¿¡æ¯
 */
 set<char> get_expinfo(const string& exp)
 {
@@ -212,19 +212,19 @@ set<char> get_expinfo(const string& exp)
 }
 
 /*
-** ÖĞ×º×ªºó×º
-** Ëã·¨
-** 1)¼ì²éÊäÈëµÄÏÂÒ»ÔªËØ¡£
-** 2)¼ÙÈçÊÇ¸ö²Ù×÷Êı£¬Êä³ö¡£
-** 3)¼ÙÈçÊÇ¸ö¿ªÀ¨ºÅ£¬½«ÆäÑ¹Õ»¡£
-** 4)¼ÙÈçÊÇ¸öÔËËã·û£¬Ôò
-**	  i) ¼ÙÈçÕ»Îª¿Õ£¬½«´ËÔËËã·ûÑ¹Õ»¡£
-** 	 ii) ¼ÙÈçÕ»¶¥ÊÇ¿ªÀ¨ºÅ£¬½«´ËÔËËã·ûÑ¹Õ»¡£
-** 	iii) ¼ÙÈç´ËÔËËã·û±ÈÕ»¶¥ÔËËã·ûÓÅÏÈ¼¶¸ß£¬½«´ËÔËËã·ûÑ¹ÈëÕ»ÖĞ¡£
-** 	 iv) ·ñÔòÕ»¶¥ÔËËã·û³öÕ»²¢Êä³ö£¬ÖØ¸´²½Öè4¡£
-** 5)¼ÙÈçÊÇ¸ö±ÕÀ¨ºÅ£¬Õ»ÖĞÔËËã·ûÖğ¸ö³öÕ»²¢Êä³ö£¬Ö±µ½Óöµ½¿ªÀ¨ºÅ¡£¿ªÀ¨ºÅ³öÕ»²¢¶ªÆú¡£
-** 6)¼ÙÈçÊäÈë»¹Î´Íê±Ï£¬Ìø×ªµ½²½Öè1¡£
-** 7)¼ÙÈçÊäÈëÍê±Ï£¬Õ»ÖĞÊ£ÓàµÄËùÓĞ²Ù×÷·û³öÕ»²¢Êä³öËüÃÇ¡£
+** ä¸­ç¼€è½¬åç¼€
+** ç®—æ³•
+** 1)æ£€æŸ¥è¾“å…¥çš„ä¸‹ä¸€å…ƒç´ ã€‚
+** 2)å‡å¦‚æ˜¯ä¸ªæ“ä½œæ•°ï¼Œè¾“å‡ºã€‚
+** 3)å‡å¦‚æ˜¯ä¸ªå¼€æ‹¬å·ï¼Œå°†å…¶å‹æ ˆã€‚
+** 4)å‡å¦‚æ˜¯ä¸ªè¿ç®—ç¬¦ï¼Œåˆ™
+**	  i) å‡å¦‚æ ˆä¸ºç©ºï¼Œå°†æ­¤è¿ç®—ç¬¦å‹æ ˆã€‚
+** 	 ii) å‡å¦‚æ ˆé¡¶æ˜¯å¼€æ‹¬å·ï¼Œå°†æ­¤è¿ç®—ç¬¦å‹æ ˆã€‚
+** 	iii) å‡å¦‚æ­¤è¿ç®—ç¬¦æ¯”æ ˆé¡¶è¿ç®—ç¬¦ä¼˜å…ˆçº§é«˜ï¼Œå°†æ­¤è¿ç®—ç¬¦å‹å…¥æ ˆä¸­ã€‚
+** 	 iv) å¦åˆ™æ ˆé¡¶è¿ç®—ç¬¦å‡ºæ ˆå¹¶è¾“å‡ºï¼Œé‡å¤æ­¥éª¤4ã€‚
+** 5)å‡å¦‚æ˜¯ä¸ªé—­æ‹¬å·ï¼Œæ ˆä¸­è¿ç®—ç¬¦é€ä¸ªå‡ºæ ˆå¹¶è¾“å‡ºï¼Œç›´åˆ°é‡åˆ°å¼€æ‹¬å·ã€‚å¼€æ‹¬å·å‡ºæ ˆå¹¶ä¸¢å¼ƒã€‚
+** 6)å‡å¦‚è¾“å…¥è¿˜æœªå®Œæ¯•ï¼Œè·³è½¬åˆ°æ­¥éª¤1ã€‚
+** 7)å‡å¦‚è¾“å…¥å®Œæ¯•ï¼Œæ ˆä¸­å‰©ä½™çš„æ‰€æœ‰æ“ä½œç¬¦å‡ºæ ˆå¹¶è¾“å‡ºå®ƒä»¬ã€‚
 */
 string infix_to_suffix(const string& exp)
 {
@@ -283,10 +283,10 @@ string infix_to_suffix(const string& exp)
 
 /*
 ** eval
-** ¼ÆËã±í´ïÊ½
-** row     : Ã¿ĞĞ±äÔª¶ÔÓ¦µÄÖµµÄĞòÁĞ
-** suffix  : ºó×º±íÊ¾µÄ±í´ïÊ½
-** exp_elem: ´æ´¢±í´ïÊ½±äÔªĞÅÏ¢
+** è®¡ç®—è¡¨è¾¾å¼
+** row     : æ¯è¡Œå˜å…ƒå¯¹åº”çš„å€¼çš„åºåˆ—
+** suffix  : åç¼€è¡¨ç¤ºçš„è¡¨è¾¾å¼
+** exp_elem: å­˜å‚¨è¡¨è¾¾å¼å˜å…ƒä¿¡æ¯
 */
 int eval(const string& row, const string& suffix, const set<char>& exp_elem)
 {
@@ -336,7 +336,7 @@ int eval(const string& row, const string& suffix, const set<char>& exp_elem)
                 temp = (!p || q) && (!q || p);
                 break;
             }
-            /* °ÑÔËËãµÄ½á¹ûÔÙÑ¹»Ø¶ÑÕ»ÖĞ */
+            /* æŠŠè¿ç®—çš„ç»“æœå†å‹å›å †æ ˆä¸­ */
             s.push(temp);
         }
     }
@@ -346,7 +346,7 @@ int eval(const string& row, const string& suffix, const set<char>& exp_elem)
 }
 
 /*
-** ´òÓ¡ÕæÖµ±í
+** æ‰“å°çœŸå€¼è¡¨
 */
 vector<char> print_table(const string& exp)
 {
@@ -389,7 +389,7 @@ vector<char> print_table(const string& exp)
 }
 
 /*
-** ÅĞ¶ÏÊÇ·ñÊÇÖØÑÔÊ½(ÓÀÕæÊ½)
+** åˆ¤æ–­æ˜¯å¦æ˜¯é‡è¨€å¼(æ°¸çœŸå¼)
 */
 int is_tautology(const vector<char>& result)
 {
@@ -397,7 +397,7 @@ int is_tautology(const vector<char>& result)
 }
 
 /*
-** ÅĞ¶ÏÊÇ·ñÊÇÃ¬¶ÜÊ½(ÓÀ¼ÙÊ½)
+** åˆ¤æ–­æ˜¯å¦æ˜¯çŸ›ç›¾å¼(æ°¸å‡å¼)
 */
 int is_contradiction(const vector<char>& result)
 {
@@ -405,11 +405,11 @@ int is_contradiction(const vector<char>& result)
 }
 
 /*
-** Ö÷ºÏÈ¡·¶Ê½ »òÓë±í´ïÊ½ ´óÏîºÏÈ¡¶ø³É
+** ä¸»åˆå–èŒƒå¼ æˆ–ä¸è¡¨è¾¾å¼ å¤§é¡¹åˆå–è€Œæˆ
 */
 void print_cnf(const vector<char>& result, const set<char>& exp_elem)
 {
-    //ÓÀÕæÊ½Ã»ÓĞºÏÈ¡·¶Ê½
+    //æ°¸çœŸå¼æ²¡æœ‰åˆå–èŒƒå¼
     if (is_tautology(result))
         return;
 
@@ -424,7 +424,7 @@ void print_cnf(const vector<char>& result, const set<char>& exp_elem)
             v.push_back(i);
     }
 
-    cout << "Ö÷ºÏÈ¡·¶Ê½\n" << "M(";
+    cout << "ä¸»åˆå–èŒƒå¼\n" << "M(";
     for (i = 0; i != v.size(); ++i)
     {
         if (i < v.size() - 1)
@@ -449,26 +449,26 @@ void print_cnf(const vector<char>& result, const set<char>& exp_elem)
         for (j = 0; j != elem.size(); ++j)
         {
             if (row[j] == '1')
-                cout << "©´" << elem[j];
+                cout << "â”" << elem[j];
             else
                 cout << elem[j];
 
             if (j < elem.size() - 1)
-                cout << "¡Å";
+                cout << "âˆ¨";
         }
         if (i < v.size() - 1)
-            cout << ")¡Ä";
+            cout << ")âˆ§";
         else
             cout << ')' << endl;
     }
 }
 
 /*
-** Ö÷ÎöÈ¡·¶Ê½ Óë»ò±í´ïÊ½ Ğ¡ÏîÎöÈ¡¶ø³É
+** ä¸»æå–èŒƒå¼ ä¸æˆ–è¡¨è¾¾å¼ å°é¡¹æå–è€Œæˆ
 */
 void print_dnf(const vector<char>& result, const set<char>& exp_elem)
 {
-    //ÓÀ¼ÙÊ½Ã»ÓĞÎöÈ¡·¶Ê½
+    //æ°¸å‡å¼æ²¡æœ‰æå–èŒƒå¼
     if (is_contradiction(result))
         return;
 
@@ -483,7 +483,7 @@ void print_dnf(const vector<char>& result, const set<char>& exp_elem)
             v.push_back(i);
     }
 
-    cout << "Ö÷ÎöÈ¡·¶Ê½\n" << "M(";
+    cout << "ä¸»æå–èŒƒå¼\n" << "M(";
     for (i = 0; i != v.size(); ++i)
     {
         if (i < v.size() - 1)
@@ -510,13 +510,13 @@ void print_dnf(const vector<char>& result, const set<char>& exp_elem)
             if (row[j] == '1')
                 cout << elem[j];
             else
-                cout << "©´" << elem[j];
+                cout << "â”" << elem[j];
 
             if (j < elem.size() - 1)
-                cout << "¡Ä";
+                cout << "âˆ§";
         }
         if (i < v.size() - 1)
-            cout << ")¡Å";
+            cout << ")âˆ¨";
         else
             cout << ')' << endl;
     }
@@ -542,15 +542,15 @@ void pause()
 
 void instruction()
 {
-    cout << "||====ÀëÉ¢ÕæÖµ±íÉú³ÉÆ÷====||\n"
-         << "||     '!' ·ñ¶¨Áª½á´Ê     ||\n"
-         << "||     '&' ºÏÈ¡Áª½á´Ê     ||\n"
-         << "||     '|' ÎöÈ¡Áª½á´Ê     ||\n"
-         << "||     '>' ÔÌº¬Áª½á´Ê     ||\n"
-         << "||     '#' µÈÖµÁª½á´Ê     ||\n"
-         << "||     'q' ÍË³ö³ÌĞò       ||\n"
+    cout << "||====ç¦»æ•£çœŸå€¼è¡¨ç”Ÿæˆå™¨====||\n"
+         << "||     '!' å¦å®šè”ç»“è¯     ||\n"
+         << "||     '&' åˆå–è”ç»“è¯     ||\n"
+         << "||     '|' æå–è”ç»“è¯     ||\n"
+         << "||     '>' è•´å«è”ç»“è¯     ||\n"
+         << "||     '#' ç­‰å€¼è”ç»“è¯     ||\n"
+         << "||     'q' é€€å‡ºç¨‹åº       ||\n"
          << "||========================||\n"
-         << "ÊäÈë±í´ïÊ½:";
+         << "è¾“å…¥è¡¨è¾¾å¼:";
 }
 
 int main()
@@ -560,7 +560,7 @@ int main()
     vector<char> result;
 
 #ifdef _WIN32
-    system("title ÀëÉ¢ÊıÑ§ÕæÖµ±í");
+    system("title ç¦»æ•£æ•°å­¦çœŸå€¼è¡¨");
 #endif
 
     while (1)
